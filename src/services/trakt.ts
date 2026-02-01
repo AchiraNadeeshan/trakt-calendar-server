@@ -1,3 +1,4 @@
+// src/services/trakt.ts
 import axios from 'axios'
 
 const TRAKT_API = 'https://api.trakt.tv'
