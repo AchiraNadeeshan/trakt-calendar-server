@@ -1,11 +1,8 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
+// api/ical.ts
 import { fetchTraktCalendar } from '../src/services/trakt'
 import { generateCalendar } from '../src/utils/ical'
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
+export default async function handler(req: any, res: any) {
   try {
     const { token, days = '30' } = req.query
 
