@@ -1,12 +1,11 @@
 // src/server.ts
 import Fastify from 'fastify'
+import icalRoute from './routes/ical'
 
 const app = Fastify()
 
-app.get('/', async () => {
-  return { status: 'ok' }
-})
+app.register(icalRoute)
 
-app.listen({ port: 3000 }, () => {
-  console.log('🚀 Server running on port 3000')
+app.listen({ port: 3000, host: '0.0.0.0' }, () => {
+  console.log('🚀 Trakt Calendar Server running on port 3000')
 })
