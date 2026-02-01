@@ -14,7 +14,7 @@ export async function fetchTraktCalendar(
     `${TRAKT_API}/calendars/my/${type}/${startDate}/${days}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,  // manual token
         'trakt-api-key': process.env.TRAKT_CLIENT_ID as string,
         'trakt-api-version': '2',
       },

@@ -1,6 +1,6 @@
 // api/ical.ts
-import { fetchTraktCalendar } from '../src/services/trakt'
-import { generateCalendar } from '../src/utils/ical'
+import { fetchTraktCalendar } from '../../src/services/trakt'
+import { generateCalendar } from '../../src/utils/ical'
 
 export default async function handler(req: any, res: any) {
   try {
