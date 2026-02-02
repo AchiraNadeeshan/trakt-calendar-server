@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "vercel dev",
-    "build": "tsc",
-    "start": "node dist/api/v1/ical.js"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
