@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trakt Calendar Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 40px;
+    }
+    .container {
+      max-width: 720px;
+      margin: auto;
+    }
+    h1 {
+      color: #38bdf8;
+    }
+    code {
+      background: #020617;
+      padding: 4px 6px;
+      border-radius: 4px;
+      color: #a5f3fc;
+    }
+    .box {
+      background: #020617;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📅 Trakt Calendar Server</h1>
+
+    <p>
+      Generate an <strong>iCal calendar</strong> from your Trakt.tv shows and movies.
+    </p>
+
+    <div class="box">
+      <strong>API (v1)</strong><br /><br />
+      <code>/api/v1/ical?token=YOUR_TRAKT_TOKEN</code><br />
+      Optional: <code>&days=30</code>
+    </div>
+
+    <div class="box">
+      <strong>Status</strong><br /><br />
+      ✅ V1: Manual token authentication<br />
+      🔜 V2: OAuth authentication
+    </div>
+
+    <p style="margin-top: 40px; opacity: 0.7">
+      Powered by Trakt · iCal · Vercel
+    </p>
+  </div>
+</body>
+</html>
