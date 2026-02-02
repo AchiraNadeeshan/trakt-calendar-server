@@ -1,60 +1,284 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Trakt Calendar Server</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      padding: 40px;
-    }
-    .container {
-      max-width: 720px;
-      margin: auto;
-    }
-    h1 {
-      color: #38bdf8;
-    }
-    code {
-      background: #020617;
-      padding: 4px 6px;
-      border-radius: 4px;
-      color: #a5f3fc;
-    }
-    .box {
-      background: #020617;
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>📅 Trakt Calendar Server</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trakt Calendar Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <p>
-      Generate an <strong>iCal calendar</strong> from your Trakt.tv shows and movies.
-    </p>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #020617;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-soft: #0ea5e9;
+        --border: #1e293b;
+      }
 
-    <div class="box">
-      <strong>API (v1)</strong><br /><br />
-      <code>/api/v1/ical?token=YOUR_TRAKT_TOKEN</code><br />
-      Optional: <code>&days=30</code>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top, #020617, var(--bg));
+        color: var(--text);
+        padding: 48px 16px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 760px;
+        margin: auto;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        margin: 0 0 12px;
+        color: var(--accent);
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 24px;
+      }
+
+      .box h2 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+        color: #e2e8f0;
+      }
+
+      code {
+        display: inline-block;
+        background: #020617;
+        border: 1px solid var(--border);
+        padding: 6px 8px;
+        border-radius: 6px;
+        color: #a5f3fc;
+        font-size: 0.95rem;
+        margin-top: 6px;
+      }
+
+      .status {
+        display: grid;
+        gap: 6px;
+      }
+
+      footer {
+        margin-top: 56px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--muted);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .input-group {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      label {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      input {
+        background: #020617;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 10px;
+        color: var(--text);
+        font-size: 0.95rem;
+      }
+
+      input::placeholder {
+        color: #64748b;
+      }
+
+      .url-preview {
+        margin-top: 14px;
+        word-break: break-all;
+      }
+
+      button {
+        margin-top: 12px;
+        align-self: flex-start;
+        background: var(--accent-soft);
+        border: none;
+        color: #020617;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      .copy-status {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>📅 Trakt Calendar Server</h1>
+        <p>
+          Generate an <strong>iCal calendar</strong> from your Trakt.tv shows
+          and movies. This allows you to subscribe to your Trakt activity in
+          calendar apps like Google Calendar, Apple Calendar, or Outlook.
+        </p>
+      </header>
+
+      <div class="box">
+        <h2>API Usage (v1)</h2>
+
+        <p>Send a <strong>GET</strong> request to the following endpoint:</p>
+
+        <code> /api/v1/ical?token=YOUR_TRAKT_TOKEN&days=30 </code>
+
+        <p>Query parameters:</p>
+        <ul>
+          <li>
+            <strong>token</strong> (required): Your Trakt personal access token
+          </li>
+          <li>
+            <strong>days</strong> (optional): Number of days to include
+            (default: 30)
+          </li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>Generate Your Calendar URL</h2>
+
+        <div class="input-group">
+          <div>
+            <label for="token">Trakt Access Token</label>
+            <input
+              id="token"
+              type="text"
+              placeholder="Enter your Trakt token"
+              oninput="updateUrl()"
+            />
+          </div>
+
+          <div>
+            <label for="days">Days (optional)</label>
+            <input
+              id="days"
+              type="number"
+              placeholder="30"
+              min="1"
+              oninput="updateUrl()"
+            />
+          </div>
+
+          <div class="url-preview">
+            <label>Your calendar URL</label>
+            <code id="generatedUrl">
+              https://trakt-calendar-server.vercel.app/api/v1/ical
+            </code>
+          </div>
+
+          <button onclick="copyUrl()">Copy URL</button>
+          <div class="copy-status" id="copyStatus"></div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Developed by
+          <a
+            href="https://achira.is-a.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Achira Nadeeshan
+          </a>
+        </p>
+        <p>
+          Source code:
+          <a
+            href="https://github.com/AchiraNadeeshan/trakt-calendar-server"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Repository
+          </a>
+        </p>
+      </footer>
     </div>
+    <script>
+      const BASE_URL = "https://trakt-calendar-server.vercel.app/api/v1/ical";
 
-    <div class="box">
-      <strong>Status</strong><br /><br />
-      ✅ V1: Manual token authentication<br />
-      🔜 V2: OAuth authentication
-    </div>
+      function updateUrl() {
+        const token = document.getElementById("token").value.trim();
+        const days = document.getElementById("days").value.trim();
 
-    <p style="margin-top: 40px; opacity: 0.7">
-      Powered by Trakt · iCal · Vercel
-    </p>
-  </div>
-</body>
+        let url = BASE_URL;
+
+        if (token) {
+          url += `?token=${encodeURIComponent(token)}`;
+          if (days) {
+            url += `&days=${encodeURIComponent(days)}`;
+          }
+        }
+
+        document.getElementById("generatedUrl").textContent = url;
+      }
+
+      function copyUrl() {
+        const url = document.getElementById("generatedUrl").textContent;
+        navigator.clipboard.writeText(url);
+
+        const status = document.getElementById("copyStatus");
+        status.textContent = "Copied to clipboard ✓";
+
+        setTimeout(() => {
+          status.textContent = "";
+        }, 2000);
+      }
+    </script>
+  </body>
 </html>
