@@ -13,7 +13,9 @@ A simple serverless API that syncs your upcoming Trakt.tv shows and movies to an
 
 ## Usage
 
-Add the following URL to your calendar app using the "Add calendar from URL" option (e.g., in Google Calendar, go to **Other calendars → Subscribe to calendar**):
+Visit **[here](https://achiranadeeshan.github.io/trakt-calendar-server/)** to generate your iCal import URL.
+
+Or manually add the following URL to your calendar app using the "Add calendar from URL" option (e.g., in Google Calendar, go to **Other calendars → Subscribe to calendar**):
 
 ```bash
 http://localhost:3000/api/v1/ical?token=YOUR_MANUAL_TOKEN

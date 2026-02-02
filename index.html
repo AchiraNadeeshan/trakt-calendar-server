@@ -214,12 +214,19 @@
             />
           </div>
 
-          <div class="url-preview">
-            <label>Your calendar URL</label>
-            <code id="generatedUrl">
-              https://trakt-calendar-server.vercel.app/api/v1/ical
-            </code>
-          </div>
+<div class="url-preview">
+  <label>Your calendar URL</label>
+  <code id="generatedUrl">
+    https://trakt-calendar-server.vercel.app/api/v1/ical
+  </code>
+
+<p style="margin-top: 10px; font-size: 0.85rem; color: var(--muted);">
+  Use this URL to subscribe in your calendar app.
+  <br />
+  <strong>Google Calendar:</strong> Settings → Add Calendar → From URL
+</p>
+
+</div>
 
           <button onclick="copyUrl()">Copy URL</button>
           <div class="copy-status" id="copyStatus"></div>
