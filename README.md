@@ -64,7 +64,7 @@ curl -X POST "https://api.trakt.tv/oauth/token" \
   }'
 ```
 
-The `access_token` in the response is your `YOUR_MANUAL_TOKEN`.
+The `access_token` in the response is `YOUR_MANUAL_TOKEN`.
 
 ## Development
 
