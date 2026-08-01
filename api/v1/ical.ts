@@ -1,12 +1,18 @@
 // api/ical.ts
-import { fetchTraktCalendar } from '../../src/services/trakt'
+import { fetchTraktCalendar, refreshAccessToken } from '../../src/services/trakt'
 import { generateCalendar } from '../../src/utils/ical'
 
 export default async function handler(req: any, res: any) {
   try {
-    const { token, days = '30' } = req.query
+    const { token, refresh_token, client_id, client_secret, days = '30' } = req.query
 
-    if (!token || typeof token !== 'string') {
+    let accessToken = token as string
+
+    if (!accessToken && refresh_token && client_id && client_secret) {
+      accessToken = await refreshAccessToken(refresh_token as string, client_id as string, client_secret as string)
+    }
+
+    if (!accessToken || typeof accessToken !== 'string') {
       return res.status(400).send('Missing or invalid token')
     }
 

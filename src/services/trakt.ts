@@ -23,3 +23,19 @@ export async function fetchTraktCalendar(
 
   return response.data
 }
+
+export async function refreshAccessToken(
+  refreshToken: string,
+  clientId: string,
+  clientSecret: string
+): Promise<string> {
+  const response = await axios.post(`${TRAKT_API}/oauth/token`, {
+    client_id: clientId,
+    client_secret: clientSecret,
+    refresh_token: refreshToken,
+    grant_type: 'refresh_token',
+    redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+  })
+
+  return response.data.access_token
+}
