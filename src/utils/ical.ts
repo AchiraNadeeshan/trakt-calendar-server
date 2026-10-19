@@ -6,10 +6,10 @@ export function generateCalendar(shows: any[], movies: any[]) {
   const calendar = ical({ name: "Trakt Calendar", timezone: "UTC" });
 
   for (const item of shows) {
-    if (!item.episode?.first_aired) continue;
+    if (!item.first_aired || !item.episode) continue;
 
     const event = calendar.createEvent({
-      start: dayjs(item.episode.first_aired).toDate(),
+      start: dayjs(item.first_aired).toDate(),
       summary: `${item.show.title} S${item.episode.season}E${item.episode.number}`,
       description: item.episode.title ?? "",
     });
