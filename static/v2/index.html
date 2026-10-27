@@ -1,0 +1,87 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Trakt Calendar Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>📅 Trakt Calendar Server</h1>
+      <p>
+        Generate an <strong>iCal calendar</strong> from your Trakt.tv shows
+        and movies. This allows you to subscribe to your Trakt activity in
+        calendar apps like Google Calendar, Apple Calendar, or Outlook.
+      </p>
+    </header>
+
+
+    <div class="box">
+      <h2>API Usage (v2)</h2>
+
+      <p>Just open: <a href="/api/v2/auth/start" target="_blank" rel="noopener noreferrer">
+          This Link
+        </a></p>
+
+      <br>
+      And log into Trakt.<br>
+      If the OAuth workflow succeeded, you'll get a link in this form:
+      <br>
+
+      <div class="url-preview">
+        <label>Your calendar URL</label>
+        <code id="generatedUrl" class="js_escape">
+    https://$HOST_NAME/api/v2/ical?user_id=[id]&secret=[secret]
+  </code>
+
+        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--muted);">
+          Use this URL to subscribe in your calendar app.
+          <br />
+          <strong>Google Calendar:</strong> Settings → Add Calendar → From URL
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <footer>
+      <p>
+        Developed by
+        <a href="https://achira.is-a.dev/" target="_blank" rel="noopener noreferrer">
+          Achira Nadeeshan
+        </a>
+        &
+        <a href="https://github.com/Totto16" target="_blank" rel="noopener noreferrer">
+          Totto16
+        </a>
+      </p>
+      <p>
+        Source code:
+        <a href="https://github.com/Totto16/trakt-calendar-server" target="_blank" rel="noopener noreferrer">
+          GitHub Repository
+        </a>
+        Commit: <a href="https://github.com/Totto16/trakt-calendar-server/commit/$COMMIT_HASH" target="_blank"
+          rel="noopener noreferrer">
+          $COMMIT_HASH
+        </a>
+      </p>
+
+    </footer>
+  </div>
+  <script>
+    document.querySelectorAll(".js_escape").forEach(node => {
+      node.textContent = node.textContent.replaceAll("$HOST_NAME", location.host)
+    })
+
+  </script>
+</body>
+
+</html>

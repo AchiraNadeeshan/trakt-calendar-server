@@ -1,0 +1,128 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Trakt Calendar Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>📅 Trakt Calendar Server</h1>
+      <p>
+        Generate an <strong>iCal calendar</strong> from your Trakt.tv shows
+        and movies. This allows you to subscribe to your Trakt activity in
+        calendar apps like Google Calendar, Apple Calendar, or Outlook.
+      </p>
+    </header>
+
+    <div class="box">
+      <h2>API Usage (v1)</h2>
+
+      <p>Send a <strong>GET</strong> request to the following endpoint:</p>
+
+      <code> /api/v1/ical?token=YOUR_TRAKT_TOKEN&days=30 </code>
+
+      <p>Query parameters:</p>
+      <ul>
+        <li>
+          <strong>token</strong> (required): Your Trakt personal access token
+        </li>
+        <li>
+          <strong>days</strong> (optional): Number of days to include
+          (default: 30)
+        </li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Generate Your Calendar URL</h2>
+
+      <div class="input-group">
+        <div>
+          <label for="token">Trakt Access Token</label>
+          <input id="token" type="text" placeholder="Enter your Trakt token" oninput="updateUrl()" />
+        </div>
+
+        <div>
+          <label for="days">Days (optional)</label>
+          <input id="days" type="number" placeholder="30" min="1" oninput="updateUrl()" />
+        </div>
+
+        <div class="url-preview">
+          <label>Your calendar URL</label>
+          <code id="generatedUrl" class="js_escape">
+    https://$HOST_NAME/api/v1/ical
+  </code>
+
+          <p style="margin-top: 10px; font-size: 0.85rem; color: var(--muted);">
+            Use this URL to subscribe in your calendar app.
+            <br />
+            <strong>Google Calendar:</strong> Settings → Add Calendar → From URL
+          </p>
+
+        </div>
+
+        <button onclick="copyUrl()">Copy URL</button>
+        <div class="copy-status" id="copyStatus"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Developed by
+        <a href="https://achira.is-a.dev/" target="_blank" rel="noopener noreferrer">
+          Achira Nadeeshan
+        </a>
+      </p>
+      <p>
+        Source code:
+        <a href="https://github.com/AchiraNadeeshan/trakt-calendar-server" target="_blank" rel="noopener noreferrer">
+          GitHub Repository
+        </a>
+      </p>
+    </footer>
+  </div>
+  <script>
+    const BASE_URL = `https://${location.host}/api/v1/ical`;
+
+    function updateUrl() {
+      const token = document.getElementById("token").value.trim();
+      const days = document.getElementById("days").value.trim();
+
+      let url = BASE_URL;
+
+      if (token) {
+        url += `?token=${encodeURIComponent(token)}`;
+        if (days) {
+          url += `&days=${encodeURIComponent(days)}`;
+        }
+      }
+
+      document.getElementById("generatedUrl").textContent = url;
+    }
+
+    function copyUrl() {
+      const url = document.getElementById("generatedUrl").textContent;
+      navigator.clipboard.writeText(url);
+
+      const status = document.getElementById("copyStatus");
+      status.textContent = "Copied to clipboard ✓";
+
+      setTimeout(() => {
+        status.textContent = "";
+      }, 2000);
+    }
+
+    document.querySelectorAll(".js_escape").forEach(node => {
+      node.textContent = node.textContent.replaceAll("$HOST_NAME", location.host)
+    })
+
+  </script>
+</body>
+
+</html>

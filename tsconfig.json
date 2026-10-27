@@ -3,15 +3,20 @@
     "target": "ES2020",
     "module": "CommonJS",
     "outDir": "dist",
-
+    "lib": [
+      "ES2021"
+    ],
     "strict": true,
     "esModuleInterop": true,
-
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "sourceMap": true,
-
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "include": ["src", "api"]
+  "include": [
+    "src",
+    "api"
+  ]
 }

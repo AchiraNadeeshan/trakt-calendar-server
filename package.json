@@ -5,20 +5,33 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "vercel dev",
-    "build": "tsc"
+    "build:db": "node dist/src/cli/dbs.js",
+    "build:compile": "tsc",
+    "build:static": "node dist/src/cli/static.js",
+    "build": "npm run build:compile && npm run build:db && npm run build:static",
+    "lint":"eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.2.0",
+    "@vercel/node": "^24.0.3",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "jiti": "^2.7.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1"
   },
   "dependencies": {
-    "@types/node": "^25.2.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.2",
     "axios": "^1.13.4",
     "dayjs": "^1.11.19",
+    "dotenv": "^18.0.8",
     "ical-generator": "^10.0.0"
   }
 }

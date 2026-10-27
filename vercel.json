@@ -1,0 +1,23 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "outputDirectory": "dist",
+    "functions": {
+        "api/**/*": {
+            "regions": [
+                "fra1"
+            ]
+        }
+    },
+    "crons": [
+        {
+            "path": "/api/v2/cron",
+            "schedule": "0 0 * * *"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/static/index.html"
+        }
+    ]
+}

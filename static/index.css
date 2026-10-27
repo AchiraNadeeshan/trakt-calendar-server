@@ -1,0 +1,149 @@
+:root {
+    --bg: #0f172a;
+    --panel: #020617;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-soft: #0ea5e9;
+    --border: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #020617, var(--bg));
+    color: var(--text);
+    padding: 48px 16px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 760px;
+    margin: auto;
+}
+
+header {
+    margin-bottom: 32px;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin: 0 0 12px;
+    color: var(--accent);
+}
+
+p {
+    margin: 0;
+    color: var(--muted);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 24px;
+}
+
+.box h2 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+}
+
+code {
+    display: inline-block;
+    background: #020617;
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    border-radius: 6px;
+    color: #a5f3fc;
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+
+.status {
+    display: grid;
+    gap: 6px;
+}
+
+footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+label {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+input {
+    background: #020617;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+.url-preview {
+    margin-top: 14px;
+    word-break: break-all;
+}
+
+button {
+    margin-top: 12px;
+    align-self: flex-start;
+    background: var(--accent-soft);
+    border: none;
+    color: #020617;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.copy-status {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
